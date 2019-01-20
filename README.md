@@ -10,4 +10,4 @@ Note that she is not currently programmed to collect any user information. For s
 <img src="http://i68.tinypic.com/14j2040.jpg" border="0" alt="#ArtificialIntelligence #VialyttAi #Dw-Develops">
 
 If you want to see her working see her here:
-https://dw-develops.github.io/Vialytt-Ai/
+http://dwdevelops.com/Vialytt-AI.html
