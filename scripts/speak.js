@@ -1,6 +1,6 @@
- 
- 
- 
+
+
+
  function start() {
 	 window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     let finalTranscript = '';
@@ -27,17 +27,17 @@
 	   //console.log('millis: ' + millis);
 	  //let timer = setTimeout(clear, 7500);
 	 //mainroutine();
-    }
+	 
+	 recognition.onspeechend = function() {
+  console.log('Speech has stopped being detected');
+  mainroutine();
+}
+}
+    
 	 
 	
     recognition.start();
 	
-	
- }
- function clear() {
-	
-	 uinput.value = '';
-	document.mainscreen.BasicTextArea4.value= '';
-	 console.log("Inputs cleared!");
+     
  }
  

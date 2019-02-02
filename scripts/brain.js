@@ -130,7 +130,7 @@ function updatescreen() {
 
 // window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput, "_blank", "bottom=50, right=50,width=1,height=1" );
      if(speaking == false) {
-	 var voice=  window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput,'_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', ''); 
+	 var voice=  window.open('https://api.voicerss.org/?key=4b20155ab70b4d039de1e765d641e119&hl=en-us&src=' + soutput,'_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', ''); 
      speaking = true;
  voice.blur();
  window.focus();
@@ -162,9 +162,20 @@ function initialCap(field) {
 
  
  
+ 
+
+
+
+ 
+ 
  //<----Clear Input---->//
  
- 
+ function clear() {
+	
+	 uinput.value = '';
+	document.mainscreen.BasicTextArea4.value= '';
+	 console.log("Inputs cleared!");
+ }
 
  
  
