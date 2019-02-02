@@ -30,3 +30,11 @@ function openPage1() {
 function openPage2() {
   window.open("https://codepen.io/Rogues/full/wRYgKv", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=620,height=480");
 }
+
+function openPortfolio() {
+  window.open("https://codepen.io/Dw-Develops/full/LMagOK", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=620,height=480");
+}
+
+function openPetsApp() {
+  window.open("https://codepen.io/Dw-Develops/full/qLLpBy", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=620,height=480");
+}

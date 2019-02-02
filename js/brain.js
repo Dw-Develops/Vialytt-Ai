@@ -9,13 +9,15 @@ var convpatterns = new Array (
    new Array (".*pause.*", function(){stopRadio()}),
    new Array (".*survey sample.*", function(){openPage1()}),
    new Array (".*tribute sample.*", function(){openPage2()}),
+   new Array (".*open my portfolio.*", function(){openPortfolio()}), 
+   new Array (".*app examples.*", function(){openPetsApp()}),
    
    //dialogue
    new Array (".*hello.*","Greetings."),
    new Array (".*the weather.*",	"I don't know what the weather is where you are but I hope its lovely!"),
    new Array ("Will I (.*)\.","Maybe, if youre good","The stars say yes","I seriously doubt it."),
    new Array ("My name is (.*)\.","Great! its nice to meet you $1 "),
-  
+   new Array (".*it going.*","Its going good thanks.", "Its decent thanks. Hows things with you?", "Are you asking because youre actually interested or are you just making casual conversation?"),
   
    new Array ("(.*)","I'm sorry but I don't know anything about that. I can however help you with Website Design and Construction, Bot Creation and Integration, Application Construction and Design, or more information about Dw Develops. Please say Website, Bots, Application, Dw Develops or Something Else."));
 
@@ -74,11 +76,15 @@ dialog = ""
 
 //-------
  function mainroutine() {
+ 
+	 
    dialog = ""
  uinput = document.mainscreen.BasicTextArea4.value;
  dialog = dialog + "User: " + uinput +  '\r' + '\r' + "\n";
   conversationpatterns()
  dialog = dialog  +  '\r' + "\n";
+
+	
   updatescreen()
 
 }
@@ -97,6 +103,7 @@ function conversationpatterns() {
 	  
 	  if(soutput !== 'Undefined') {
       dialog = dialog + "Vialytt: " + soutput +  '\r' + "\n";
+	  
      //break;
 	  } else {
 		dialog = dialog + "Vialytt: " +  'Working....';
@@ -118,7 +125,8 @@ function updatescreen() {
  document.mainscreen.BasicTextArea1.value = dialog
  //document.mainscreen.BasicTextArea2.value = soutput
  //document.mainscreen.BasicTextArea3.value = uinput
- document.mainscreen.BasicTextArea4.value = ""
+ document.mainscreen.BasicTextArea4.value = "";
+
 
 // window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput, "_blank", "bottom=50, right=50,width=1,height=1" );
      if(speaking == false) {
@@ -145,13 +153,21 @@ function close() {
 //-------
 function initialCap(field) {
    field = field.substr(0, 1).toUpperCase() + field.substr(1);
-   return field
+   return field;
+ 
 }
 
 
 //------Voice Stuff----->//
 
+ 
+ 
+ //<----Clear Input---->//
+ 
+ 
 
+ 
+ 
 
 
 //----Supplemental Code To Test System---
