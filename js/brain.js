@@ -1,4 +1,4 @@
-var doneSpeaking = false;
+var speaking = false;
 //----Data Declarations----
 var convpatterns = new Array (
   
@@ -121,7 +121,9 @@ function updatescreen() {
  document.mainscreen.BasicTextArea4.value = ""
 
 // window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput, "_blank", "bottom=50, right=50,width=1,height=1" );
-      var voice=  window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput,'_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', ''); 
+     if(speaking == false) {
+	 var voice=  window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput,'_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', ''); 
+     speaking = true;
  voice.blur();
  window.focus();
  console.log(soutput.length);
@@ -129,11 +131,14 @@ function updatescreen() {
  console.log(ms);
 var timer = setTimeout(close, ms);
 console.log(soutput.length);//get('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput);
-
+    speaking = false;
 function close() {
+	
 	voice.close();
 }
-
+	 } else {
+		 alert("Wait until Vialytt is finished speaking!");
+	 }
 }
 
 
@@ -142,6 +147,11 @@ function initialCap(field) {
    field = field.substr(0, 1).toUpperCase() + field.substr(1);
    return field
 }
+
+
+//------Voice Stuff----->//
+
+
 
 
 //----Supplemental Code To Test System---
