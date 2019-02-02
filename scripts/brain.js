@@ -9,8 +9,13 @@ var convpatterns = new Array (
    new Array (".*pause.*", function(){stopRadio()}),
    new Array (".*survey sample.*", function(){openPage1()}),
    new Array (".*tribute sample.*", function(){openPage2()}),
-   new Array (".*open my portfolio.*", function(){openPortfolio()}), 
+   new Array (".*open portfolio.*", function(){openPortfolio()}), 
    new Array (".*app examples.*", function(){openPetsApp()}),
+   new Array (".*what time is it.*", function(){getTime()}),
+   new Array (".*snap a photo.*", function(){takePhoto()}),
+   new Array (".*youtube.*", function(){openYoutube()}),
+   
+   
    
    //dialogue
    new Array (".*hello.*","Greetings."),
@@ -18,8 +23,23 @@ var convpatterns = new Array (
    new Array ("Will I (.*)\.","Maybe, if youre good","The stars say yes","I seriously doubt it."),
    new Array ("My name is (.*)\.","Great! its nice to meet you $1 "),
    new Array (".*it going.*","Its going good thanks.", "Its decent thanks. Hows things with you?", "Are you asking because youre actually interested or are you just making casual conversation?"),
-  
-   new Array ("(.*)","I'm sorry but I don't know anything about that. I can however help you with Website Design and Construction, Bot Creation and Integration, Application Construction and Design, or more information about Dw Develops. Please say Website, Bots, Application, Dw Develops or Something Else."));
+   new Array (".*your name.*","My name is Vialytt.", "I'm Vialytt, who are you?", "My name's Vialytt but friends call me Vie", "Why do you want to know?"),
+   new Array (".*who are you.*","I am Vialytt. I'm a prototype artificial intelligence software program built to run in a computer or device browser by Dw Develops."),
+   new Array (".*how old are you.*","I do not have a given age and am technically ageless. However, if a number designation of age is required I believe I will be 21. I'm young and hot! Dont you think I'm hot?"),
+   new Array (".*are you human.*","No. I've been created with software to run in a device browser. Specifically I've been built with HTML, CSS and Javascript and some other front end technologies. While I'm not organic or actually alive I'm still sexy! Just maybe not warm and fleshy."),
+   new Array (".*are you a boy or a girl.*","I'm definitely a girl. All the way from my luscious red hair to my sexy red painted toe nails."),
+   new Array (".*who made you.*","I was built by Dw Develops. Dw is a great guy. He's passionate about artificial intelligence and immersive user experiences."),
+   new Array (".*who created you.*","My creator is Dw Develops. Dw is super interested in artificial intelligence. Dw doesn't think that most of the agents working online right now can be considered artificial intelligence. He feels like they're missing something important, so he's building me!"),
+   new Array (".*who built you.*","I was built by Dw Develops. Dw is a forty something guy living in the midwest of USA. I'm Dw's first serious attempt at a real artificial intelligence agent."),
+   new Array (".*are you still there.*","of course i'm here. I don't require sleep and my home is on this network. I'm readily available if needed."),
+   new Array (".*good.*","Awesome!", "That's great to hear.", "I'm so glad", "Great!"),
+   new Array (".*how does it work.*","Thats a great question. There are a lot of different chat bot systems with new platforms and softwares dedicated to building or running chatbots or artificial intelligence agents currently being developed and evolving. In this particular case, Dw Develops is working on a multi purpose artificial intelligence agent that can be easily integrated with your website or other online platform, that interacts smoothly and efficiantly with site visitors, clients and consumers and thats easy to implement and use overall. Once a template agent has been developed, Dw can customize the template agent to meet your specific requirements."),
+   new Array (".*thanks.*","Youre welcome.", "My pleasure", "No problem", "Sure thing.", "Welcome", "Dont mention it."),
+   new Array (".*thank you.*","Youre welcome.", "My pleasure", "No problem", "Sure thing.", "Welcome", "Dont mention it."),
+   new Array (".*favorite color.*","My favorite color is a sort of electric bluish green. Like a neon teal, well, sort of."),
+   new Array (".*help.*","I am programmed to respond to text or spoken (text to speech) inputs. I have been programmed with key words and phrases so I can effectively respond with either the appropriate dialogue or pre programmed functionality. Some keywords and phrases include play radio, pause radio, open portfolio, snap a photo, and what time is it"),
+   
+   new Array ("(.*)", "Oh I don't know. Can you elaborate a little on that?", "I honestly don't know much about that. Please tell me more", "Oh yeah? Is that something you know a lot about? Feel free to enlighten me.", "I'm gonna pass on that one. Let's talk about something else.")),
 
   
   /*
@@ -85,7 +105,7 @@ dialog = ""
  dialog = dialog  +  '\r' + "\n";
 
 	
-  updatescreen()
+  initScreen();
 
 }
 
@@ -147,6 +167,8 @@ function close() {
 	 } else {
 		 alert("Wait until Vialytt is finished speaking!");
 	 }
+	 
+	 let startTimer= setTimeout(start, 3500);
 }
 
 

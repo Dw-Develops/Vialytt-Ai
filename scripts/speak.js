@@ -23,18 +23,19 @@
 	  uinput= finalTranscript + interimTranscript;
 	  console.log(uinput);
 	  document.mainscreen.BasicTextArea4.value= uinput;
-	  let millis = finalTranscript.length * 250;
+	  let millis = uinput.length * 250;
 	   //console.log('millis: ' + millis);
 	  //let timer = setTimeout(clear, 7500);
 	 //mainroutine();
 	 
 	 recognition.onspeechend = function() {
   console.log('Speech has stopped being detected');
+  
   mainroutine();
 }
 }
     
-	 
+	
 	
     recognition.start();
 	
