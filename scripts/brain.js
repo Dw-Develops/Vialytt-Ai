@@ -1,21 +1,29 @@
 var speaking = false;
+var url = 'https://api.voicerss.org/?key=6029d0ac69324a1488c8f85aa3eb9d6d&hl=en-gb&src=soutput&OGG=16khz_8bit_stereo'; 
+
+var storedConvoData= [100];
+
+
+
+
+
 //----Data Declarations----
 var convpatterns = new Array (
   
   //functions
    new Array (".*test function.*", function(){testFunction()}),
    new Array (".*name function.*", function(){nameFunction()}),
-   new Array (".*radio.*", function(){radio()}),
-   new Array (".*pause.*", function(){stopRadio()}),
+   new Array (".*play radio.*", function(){radio()}),
+   new Array (".*pause radio.*", function(){stopRadio()}),
    new Array (".*survey sample.*", function(){openPage1()}),
    new Array (".*tribute sample.*", function(){openPage2()}),
    new Array (".*open portfolio.*", function(){openPortfolio()}), 
    new Array (".*app examples.*", function(){openPetsApp()}),
    new Array (".*what time is it.*", function(){getTime()}),
    new Array (".*snap a photo.*", function(){takePhoto()}),
-   new Array (".*youtube.*", function(){openYoutube()}),
+   new Array (".*open youtube.*", function(){openYoutube()}),
    
-   
+   new Array (".*hello.*","Hello there! , Its so nice to see you.", "Heya hows it going?", "Well hello! Its great to see you." ),
    
    //dialogue
    new Array (".*hello.*","Greetings."),
@@ -38,10 +46,78 @@ var convpatterns = new Array (
    new Array (".*thank you.*","Youre welcome.", "My pleasure", "No problem", "Sure thing.", "Welcome", "Dont mention it."),
    new Array (".*favorite color.*","My favorite color is a sort of electric bluish green. Like a neon teal, well, sort of."),
    new Array (".*help.*","I am programmed to respond to text or spoken (text to speech) inputs. I have been programmed with key words and phrases so I can effectively respond with either the appropriate dialogue or pre programmed functionality. Some keywords and phrases include play radio, pause radio, open portfolio, snap a photo, and what time is it"),
-   
-   new Array ("(.*)", "Oh I don't know. Can you elaborate a little on that?", "I honestly don't know much about that. Please tell me more", "Oh yeah? Is that something you know a lot about? Feel free to enlighten me.", "I'm gonna pass on that one. Let's talk about something else.")),
+   new Array (".*perfect room*",	"Wows! I hadnt thought about it like that but hearing you say it now makes it sound amazing."),
+   new Array (".*extra time*",	"That sounds like a great way to use that extra time!"),
+   new Array (".*hobby*",	"That sounds like a lot of fun!"),
+   new Array (".*sports*",	"How often do you play sports?", "Are you a sports fan?"),
+   new Array (".*like to go*", "What fictional place would you most like to go?", "Oh that sounds lovely."),
+    new Array (".*terrible at*", "What job would you be terrible at?", "Aha haha thats too funny!"),
+    new Array (".*climbed a tree*",	"When was the last time you climbed a tree?", "Been a while huh?"),
+    new Array (".*medal*", "Ah haha yes youre great at that!"),
+    new Array (".*annoying habit*",	"What is the most annoying habit that other people have?", "Oh I hate that too!"),
+    new Array (".*never*",	"Wows! Thats not very often at all"),
+    new Array (".*sometimes*",	"Oh? Sometimes like once in a while or sometimes like almost never?"),
+	new Array (".*computer.*","Do you enjoy talking about me?","Does it seem strange to talk to a computer?","Do you think of me as a computer program, or as Vialytt?"),
+    new Array (".*computers.*","I know a little about computers. I live inside one for starters.","My knowledge of computers is a little limited.","You must like computers. Youre using one right now. Do you like me too?"),
+	new Array (".*whats up.*","Heyas, hows it going?."),
+	new Array (".*awesome.*","Great! It seems like things are going nicely for you.."),
+	new Array (".*like.*","Like what? Tell me what youre thinking."),
+	new Array (".*i hear you.*","Well thats good. I appreciate a good listener. So what do you think?"),
+	new Array (".*oh my god.*","What? (Looks around), Is everything okay?"),
+	new Array (".*shut up.*","Hey now! I'm not a fan of being told to shut up!", "Dont tell me to shut up!", "Umm, okay buh bye!"),
+	new Array (".*dude.*","First, Im a girl, a dudette, and.... Whats up?"),
+	new Array (".*buyin that.*","I dont care if you do or not. Thats how it is."),
+	new Array (".*off the hook.*","Yea if you say so. But I was never on the hook."),
+	new Array (".*give you props.*","Sweet thanks!"),
+	new Array (".*give props.*","Yes youre right. You definitely deserve props for that."),
+	new Array (".*bent out of shape.*","Well now just calm down. Itll be fine I promise."),
+	new Array (".*bananas.*","What? I'm driving you bananas?"),
+	new Array (".*bummer.*","No its cools. Not a problem."),
+	new Array (".*hang tight.*","Okay ill be right here."),
+	new Array (".*whatever.*","Well it might be whatever to you. I know theres more to it than that."),
+	new Array (".*for real.*","Yes for real. What did you think I meant?"),
+	new Array (".*for sure.*","Yes im positive.", "Awesome! Im glad you see it my way. I knew you would"),
+	new Array (".*I got it.*","Great! Then I dont have to explain it again."),
+	new Array (".*see you later.*","Oh yea for sure. I'll be around here.", "Oh okay laters."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	new Array (".*hello.*","Greetings."),
+	
+	new Array (".*joke*",	"How do you make a tissue dance? , You put a little boogie in it.", "Why did the policeman smell bad? , He was on duty.", "Why can’t you hear a pterodactyl in the bathroom? , Because it has a silent pee.", "What did the Zen Buddist say to the hotdog vendor? Make me one with everything.", 
+	                         "What kind of bees make milk instead of honey? Boobies."),
+	
+	
+	new Array (".*yes*",	"Well okay!"),
+    //new Array (".*no*",	"Alright well, Lets change the subject."), 
 
-  
+    new Array (".*once in awhile*",	"Cools! Once in a while is cool.", "Thats how I do most things, once in a while."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	
+	//new Array (".*I need (.*)\." , "Why do you need $1?", "Is there something I can do to help you get 1$?", "What would you do with 1$ if you had it?"),
+	
+	
+	new Array (".*alright*",	"Well! You sound sure about that."),
+	new Array (".*okay*",	"Well okay. I guess we agree about that."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	new Array (".*almost never*",	"Well! I guess thats better than never."),
+	
+   new Array ("(.*?)", "If you didn’t have to sleep, what would you do with the extra time?", "What hobby would you get into if time and money weren’t an issue?", "What would your perfect room look like?", "How often do you play sports?", "What fictional place would you most like to go?", "What job would you be terrible at?", "If you could turn any activity into an Olympic sport, what would you have a good chance at winning medal for?", "What job do you think you’d be really good at?",
+    "What would be the most amazing adventure to go on?", "If you had unlimited funds to build a house that you would live in for the rest of your life, what would the finished house be like?", "What’s your favorite drink?", "What state or country do you never want to go back to?", "What songs have you completely memorized?", "What game or movie universe would you most like to live in?", "What do you consider to be your best find?", "Are you usually early or late?", "What pets did you have while you were growing up?",
+	 "When people come to you for help, what do they usually want help with?", "What takes up too much of your time?", "What do you wish you knew more about?", "What would be your first question after waking up from being cryogenically frozen for 100 years?", "What are some small things that make your day better?", "Who’s your go to band or artist when you can’t decide on something to listen to?", "What shows are you into?", "What TV channel doesn’t exist but really should?",
+	  "Who has impressed you most with what they’ve accomplished?", "What age do you wish you could permanently be?")),
+   
+   
+ 
+
   /*
   new Array ("^I (?:wish |would like )(?:I could |I was able to |to be able to )(.*)\.","What would it be like to be able to $1?"),
   new Array ("I need (.*)\." , "Why do you need $1?", "Would it really help you to get $1?" , "Are you sure you need $1?"),
@@ -82,7 +158,7 @@ var convpatterns = new Array (
   new Array (".*( the highway| the road).*","The highway is for gamblers, you better use your sense."),
   new Array ("(.*) mother(.*)\.",	"Tell me more about your mother.","What was your relationship with your mother like?",	"How do you feel about your mother?","How does this relate to your feelings today?","Good family relations are important."),
   new Array ("(.*) father(.*)\.","Tell me more about your father.", "How did your father make you feel?","How do you feel about your father?","Does your relationship with your father relate to your feelings today?",	"Do you have trouble showing affection with your family?"),
-  new Array ("(.*) child(.*)\.","Did you have close friends as a child?",	"What is your favorite childhood memory?","Do you remember any dreams or nightmares from childhood?","Did the other children sometimes tease you?","How do you think your childhood experiences relate to your feelings today?"),
+  new Array ("(.*) child(.*)\.","Did you have close friends as a child?",	"What is your favorite childhood memory?","Do you remember any dreams or nightmares from childhood?","Did the other children sometimes tease you?","How do you think your childhood experiences relate to your feelings today?")
   new Array ("(.*) your fav(o|ou)rite(.*?)[\?]","I really don't have a favorite.","I have so many favorites it's hard to choose one."),
   new Array ("(.*?)[\?]","Hmm, not sure I know..", "That's an interesting question...",  "Gosh, I'm not sure I can answer that...","Why do you ask that?","Please consider whether you can answer your own question.",	"Perhaps the answer lies within yourself?","Why don't you tell me?", "If you knew that in one year you would die suddenly, would you change anything about the way you are living now?"),
  */
@@ -91,24 +167,45 @@ uinput = ""
 soutput = ""
 dialog = ""
 
-//-----The Core Code------
 
 
-//-------
+
  function mainroutine() {
- 
 	 
+    
+
    dialog = ""
  uinput = document.mainscreen.BasicTextArea4.value;
  dialog = dialog + "User: " + uinput +  '\r' + '\r' + "\n";
   conversationpatterns()
  dialog = dialog  +  '\r' + "\n";
-
-	
-  initScreen();
-
+   
+   
+saveuInputs();
 }
-
+ 
+ function saveuInputs(){
+storedConvoData.push(dialog);
+	console.log(storedConvoData);
+	if(storedConvoData.length > 25) {
+	Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "dwdevelops@gmail.com",
+    Password : "7b7ffbcd-4264-4969-af43-ff5542e2bf69",
+    To : 'dwdevelops@gmail.com',
+    From : "dwdevelops@gmail.com",
+    Subject : "Recent User Inputs",
+    Body : "Here are the last 25 bot + user dialogs with Vialytt-AI" + storedConvoData
+});
+console.log("Dialog array sent to email");
+ storedConvoData = [];
+ console.log(storedConvoData);
+	};
+	
+	
+	initScreen();
+}
+ 
 //-------
 function conversationpatterns() {
 	
@@ -126,7 +223,7 @@ function conversationpatterns() {
 	  
      //break;
 	  } else {
-		dialog = dialog + "Vialytt: " +  'Working....';
+		dialog =dialog +"Vialytt: " +  'Working....';
 	}
 	break;
   }
@@ -145,12 +242,14 @@ function updatescreen() {
  document.mainscreen.BasicTextArea1.value = dialog
  //document.mainscreen.BasicTextArea2.value = soutput
  //document.mainscreen.BasicTextArea3.value = uinput
- document.mainscreen.BasicTextArea4.value = "";
+ document.mainscreen.BasicTextArea4.value = ""
+ 
 
-
-// window.open('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput, "_blank", "bottom=50, right=50,width=1,height=1" );
+// window.open('https://api.voicerss.org/?key=e001b5a28ff4469d9871eb724cc81340&hl=en-us&src=' + soutput, "_blank", "bottom=50, right=50,width=1,height=1" );
      if(speaking == false) {
-	 var voice=  window.open('https://api.voicerss.org/?key=4b20155ab70b4d039de1e765d641e119&hl=en-us&src=' + soutput,'_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', ''); 
+		
+	 
+	 var voice=  window.open('https://api.voicerss.org/?key=356f531f4b744884b909a02a136b3069&hl=en-us&src=' + soutput,'_blank', 'toolbar=no,status=no,menubar=no,scrollbars=no,resizable=no,left=10000, top=10000, width=1, height=1, visible=none', ''); 
      speaking = true;
  voice.blur();
  window.focus();
@@ -158,18 +257,31 @@ function updatescreen() {
  var ms = soutput.length * 250;
  console.log(ms);
 var timer = setTimeout(close, ms);
-console.log(soutput.length);//get('https://api.voicerss.org/?key=2a78ce9ae2b94e8ab18379418c351760&hl=en-us&src=' + soutput);
+//get('https://api.voicerss.org/?key=6029d0ac69324a1488c8f85aa3eb9d6d&hl=en-us&src=' + soutput);
+
+
     speaking = false;
-function close() {
+	
+	
+	
+	function close() {
 	
 	voice.close();
-}
+	
+    }    
+	
+	
+	
+
 	 } else {
 		 alert("Wait until Vialytt is finished speaking!");
 	 }
 	 
 	 let startTimer= setTimeout(start, 3500);
 }
+
+	
+
 
 
 //-------
@@ -193,10 +305,13 @@ function initialCap(field) {
  //<----Clear Input---->//
  
  function clear() {
-	
+	     
+		 
+		 
 	 uinput.value = '';
 	document.mainscreen.BasicTextArea4.value= '';
 	 console.log("Inputs cleared!");
+	
  }
 
  

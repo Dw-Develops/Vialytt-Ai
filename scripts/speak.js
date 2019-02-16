@@ -22,7 +22,11 @@
       //document.querySelector('body').innerHTML = finalTranscript + interimTranscript + '</>';
 	  uinput= finalTranscript + interimTranscript;
 	  console.log(uinput);
-	  document.mainscreen.BasicTextArea4.value= uinput;
+	  document.mainscreen.BasicTextArea4.value= '';
+	  
+	  
+	  
+	  
 	  let millis = uinput.length * 250;
 	   //console.log('millis: ' + millis);
 	  //let timer = setTimeout(clear, 7500);
@@ -30,6 +34,9 @@
 	 
 	 recognition.onspeechend = function() {
   console.log('Speech has stopped being detected');
+  
+ 
+   
   
   mainroutine();
 }
