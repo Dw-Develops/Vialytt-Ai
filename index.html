@@ -1,5 +1,19 @@
 <html>
 <head>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116668649-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-116668649-2');
+</script>
+
+
+
+
 <meta charset="utf-8">
    
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,17 +24,19 @@
   <source src="audio/song1.mp3" type="audio/mp3">   
 </audio>
 <audio id="sound2">
-  <source src="'https://api.voicerss.org/?key=4b20155ab70b4d039de1e765d641e119&hl=en-us&src=' + soutput" type="audio/mp3">
+  <source src="'2d8401a6fa914048926ceb2be131dedd&hl=en-us&src=' + soutput" type="audio/mp3">
 </audio>
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" href="css/style.css">
- <script src="jquery-3.3.1.min.js"></script>
+
+ <script src="https://smtpjs.com/v3/smtp.js"></script>
+ 
 <script src="scripts/action.js"></script>
 <script src="scripts/brain.js"></script>
-
+<script src="scripts/storeUInput.js"></script>
  <script src="scripts/speak.js"></script>
- 
+ <script src="scripts/reply.js"></script>
  
 <style>
 BODY {
@@ -107,10 +123,13 @@ textarea {
 </head>
 
 <body onLoad="initScreen()">
+
+
 <div class="container-fluid" id="package" align='center'>
  
 
 <img src="images/ava-marie-2.png" id='botImage' alt="Ava Virtual Entity Version 1" width="48px" height="64px" >
+
 
   <div id='console'>
 <form name="mainscreen" onkeypress = "if(event.keyCode == 13) {mainroutine();return false}">
@@ -124,7 +143,7 @@ textarea {
 
   
   
-<textarea id='userinputfield' name="BasicTextArea4" type="text" class="txt" id='inputs' rows="1"  placeholder='Type Here and Hit "Enter"' cols="35"></textarea><br />
+<textarea id='userInput' method='post'name="BasicTextArea4" type="text" class="txt" id='inputs' rows="1"  placeholder='Type Here and Hit "Enter"' cols="35"></textarea><br />
     
 	
 <input id=runbutton  class="button" type="button" value="Enter" name="run_button" onClick="mainroutine()">
@@ -141,6 +160,19 @@ textarea {
 
 </form>
 
+<script>
+
+ 
+
+  var timer = setTimeout(initConvo, 7500);
+  
+  function initConvo() {
+    document.mainscreen.BasicTextArea4.value = "hello";
+  
+	mainroutine();
+}
+
+</script>
 
 </body>
 </html>
